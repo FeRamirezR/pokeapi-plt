@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://pokeapi.com/poketest/soap"
+           xmlns:tns="http://pokeapi.com/poketest/soap"
+           elementFormDefault="qualified">
+
+  <!-- Clase Pokemon -->
+  <xs:complexType name="Pokemon">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int"/>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="type" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Request -->
+  <xs:element name="getPokemonsRequest" type="tns:GetPokemonsRequest"/>
+
+  <xs:complexType name="GetPokemonsRequest">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <!-- Response -->
+  <xs:element name="getPokemonsResponse" type="tns:GetPokemonsResponse"/>
+
+  <xs:complexType name="GetPokemonsResponse">
+    <xs:sequence>
+      <xs:element name="pokemons" type="tns:Pokemon" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

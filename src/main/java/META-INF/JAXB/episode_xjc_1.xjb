@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings version="2.1" xmlns="http://java.sun.com/xml/ns/jaxb">
+  <!--
+
+Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.3.2 
+Visite <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
+Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+Generado el: 2025.04.11 a las 01:36:05 AM COT 
+
+  -->
+  <bindings scd="x-schema::tns" xmlns:tns="http://pokeapi.com/poketest">
+    <schemaBindings map="false">
+      <package name="com.pokeapi.poketest"/>
+    </schemaBindings>
+    <bindings scd="tns:getPokemonsRequest">
+      <class ref="com.pokeapi.poketest.GetPokemonsRequest"/>
+    </bindings>
+    <bindings scd="tns:getPokemonsResponse">
+      <class ref="com.pokeapi.poketest.GetPokemonsResponse"/>
+    </bindings>
+    <bindings scd="~tns:Pokemon">
+      <class ref="com.pokeapi.poketest.Pokemon"/>
+    </bindings>
+  </bindings>
+</bindings>
+

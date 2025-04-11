@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions 
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://pokeapi.com/pokemon"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    name="PokemonService"
+    targetNamespace="http://pokeapi.com/pokemon">
+
+    <!-- Tipos de datos importados desde el XSD -->
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://pokeapi.com/pokemon"
+                        schemaLocation="pokemon-response.xsd"/>
+        </xsd:schema>
+    </types>
+
+    <!-- Mensaje de entrada -->
+    <message name="GetPokemonsRequest">
+        <part name="parameters" element="tns:GetPokemonsRequest"/>
+    </message>
+
+    <!-- Mensaje de salida -->
+    <message name="GetPokemonsResponse">
+        <part name="parameters" element="tns:GetPokemonsResponse"/>
+    </message>
+
+    <!-- Port Type (interfaz del servicio) -->
+    <portType name="PokemonPortType">
+        <operation name="getPokemons">
+            <input message="tns:GetPokemonsRequest"/>
+            <output message="tns:GetPokemonsResponse"/>
+        </operation>
+    </portType>
+
+    <!-- Binding (cómo se comunica) -->
+    <binding name="PokemonSoapBinding" type="tns:PokemonPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="getPokemons">
+            <soap:operation soapAction="getPokemons"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <!-- Service (dónde se expone) -->
+    <service name="PokemonService">
+        <port name="PokemonPort" binding="tns:PokemonSoapBinding">
+            <soap:address location="http://localhost:8080/ws"/>
+        </port>
+    </service>
+</definitions>
