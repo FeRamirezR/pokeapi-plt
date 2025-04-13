@@ -30,7 +30,7 @@ consumo de APIs REST, exposición de servicios SOAP, persistencia en base de dat
 
 ## 🚀 Tecnologías y herramientas usadas
 
-- Java 17
+- Java 21
 - Spring Boot 3.4.4
 - Spring Data JPA
 - PostgreSQL
