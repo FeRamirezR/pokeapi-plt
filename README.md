@@ -81,7 +81,7 @@ Implementar autenticación básica o token para exponer los servicios.
 Añadir paginación también al servicio SOAP.
 
 ## 👨‍💻 Autor
-Desarrollado por Luisa Ramirez
-Contacto: lframirezr4@gmail.com
-LinkedIn: https://www.linkedin.com/in/luisa-ram%C3%ADrez-3a6156b0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app
+- Desarrollado por Luisa Ramirez
+- Contacto: lframirezr4@gmail.com
+- LinkedIn: https://www.linkedin.com/in/luisa-ram%C3%ADrez-3a6156b0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app
 
