@@ -131,17 +131,18 @@ Consulta: Proporciona métodos para consultar datos desde la base de datos.
 1. Clonar el repositorio
 https://github.com/FeRamirezR/pokeapi-plt.git
 
-2. Ejecutar migraciones con flyway o hacerlo a mano 
+2. Ejecutar migraciones con flyway o hacerlo a mano
+
 mvn flyway:clean
 mvn flyway:migrate
 
-3. Compilar y ejecutar
+4. Compilar y ejecutar
 
 mvn clean install
 mvn spring-boot:run
 
 ## WSDL:
-http://localhost:8080/ws/pokemons.wsdl(no esta funcional)
+http://localhost:8080/ws/pokemons.wsdl (no esta funcional)
 
 ## 📐 Patrones de diseño aplicados
 1. Data Access Object (DAO)
