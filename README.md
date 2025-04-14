@@ -128,15 +128,14 @@ Consulta: Proporciona métodos para consultar datos desde la base de datos.
 
 ## ⚙️ Cómo correr el proyecto localmente
 
-### 1. Clonar el repositorio
+1. Clonar el repositorio
 https://github.com/FeRamirezR/pokeapi-plt.git
 
-
-## Ejecutar migraciones con flyway o hacerlo a mano 
+2. Ejecutar migraciones con flyway o hacerlo a mano 
 mvn flyway:clean
 mvn flyway:migrate
 
-## Compilar y ejecutar
+3. Compilar y ejecutar
 
 mvn clean install
 mvn spring-boot:run
