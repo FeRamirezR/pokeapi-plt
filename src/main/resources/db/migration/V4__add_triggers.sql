@@ -56,40 +56,45 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-- Eliminar triggers si ya existen y crearlos nuevamente
+
 -- Trigger para la tabla pokemon
+DO $$
+BEGIN
+    IF EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'trg_audit_pokemon') THEN
+        DROP TRIGGER trg_audit_pokemon ON pokemon;
+    END IF;
+END;
+$$;
+
 CREATE TRIGGER trg_audit_pokemon
 AFTER INSERT OR UPDATE OR DELETE ON pokemon
 FOR EACH ROW
 EXECUTE FUNCTION log_pokemon_changes();
 
 -- Trigger para la tabla type
+DO $$
+BEGIN
+    IF EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'trg_audit_type') THEN
+        DROP TRIGGER trg_audit_type ON type;
+    END IF;
+END;
+$$;
+
 CREATE TRIGGER trg_audit_type
 AFTER INSERT OR UPDATE OR DELETE ON type
 FOR EACH ROW
 EXECUTE FUNCTION log_type_changes();
 
 -- Trigger para la tabla ability
-CREATE TRIGGER trg_audit_ability
-AFTER INSERT OR UPDATE OR DELETE ON ability
-FOR EACH ROW
-EXECUTE FUNCTION log_ability_changes();
+DO $$
+BEGIN
+    IF EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'trg_audit_ability') THEN
+        DROP TRIGGER trg_audit_ability ON ability;
+    END IF;
+END;
+$$;
 
-
-
-
--- Trigger para la tabla pokemon
-CREATE TRIGGER trg_audit_pokemon
-AFTER INSERT OR UPDATE OR DELETE ON pokemon
-FOR EACH ROW
-EXECUTE FUNCTION log_pokemon_changes();
-
--- Trigger para la tabla type
-CREATE TRIGGER trg_audit_type
-AFTER INSERT OR UPDATE OR DELETE ON type
-FOR EACH ROW
-EXECUTE FUNCTION log_type_changes();
-
--- Trigger para la tabla ability
 CREATE TRIGGER trg_audit_ability
 AFTER INSERT OR UPDATE OR DELETE ON ability
 FOR EACH ROW
