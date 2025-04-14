@@ -2,8 +2,6 @@ package com.pokeapi.poketest.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,23 +10,25 @@ import javax.persistence.Table;
 public class Pokemon {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "idPokemon", columnDefinition = "INTEGER")
+    @Column(name = "idpokemon", columnDefinition = "INTEGER")
 	private Integer idPokemon;
 	
 	@Column(name = "name", columnDefinition = "VARCHAR(100)")
 	private String name;
 
 	@Column(name = "height", columnDefinition = "INTEGER")
-	private String height;
+	private Integer height;
 
 	@Column(name = "weight", columnDefinition = "INTEGER")
-	private String weight;
+	private Integer weight;
 	
 	@Column(name = "baseExperience", columnDefinition = "INTEGER")
-	private String baseExperience;
+	private Integer baseExperience;
 
-    public Pokemon(String baseExperience, String height, Integer idPokemon, String name, String weight) {
+	public Pokemon() {
+    }
+
+    public Pokemon(Integer idPokemon, String name,Integer baseExperience, Integer height, Integer weight) {
         this.idPokemon = idPokemon;
         this.name = name;
 		this.baseExperience = baseExperience;
@@ -51,27 +51,27 @@ public class Pokemon {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getHeight() {
+	public Integer getHeight() {
 		return height;
 	}
 
-	public void setHeight(String height) {
+	public void setHeight(Integer height) {
 		this.height = height;
 	}
 
-	public String getWeight() {
+	public Integer getWeight() {
 		return weight;
 	}
 
-	public void setWeight(String weight) {
+	public void setWeight(Integer weight) {
 		this.weight = weight;
 	}
 
-	public String getBase_experience() {
+	public Integer getBase_experience() {
 		return baseExperience;
 	}
 
-	public void setBaseExperience(String baseExperience) {
+	public void setBaseExperience(Integer baseExperience) {
 		this.baseExperience = baseExperience;
 	}
 

@@ -1,13 +1,15 @@
 package com.pokeapi.poketest.soap;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.pokeapi.poketest.dto.AbilityDto;
-import com.pokeapi.poketest.service.AbilityService;
+import java.util.List;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
-import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.pokeapi.poketest.dto.AbilityDto;
+import com.pokeapi.poketest.service.AbilityService;
 
 @WebService(serviceName = "AbilitySoapService")
 @Service
@@ -22,7 +24,7 @@ public class AbilitySoapService {
     }
 
     @WebMethod
-    public AbilityDto getAbilityById(String id) {
+    public AbilityDto getAbilityById(Integer id) {
         return abilityService.findById(id);
     }
 
@@ -32,7 +34,7 @@ public class AbilitySoapService {
     }
 
     @WebMethod
-    public void deleteAbility(String id) {
+    public void deleteAbility(Integer id) {
         abilityService.delete(id);
     }
 }

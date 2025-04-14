@@ -2,8 +2,6 @@ package com.pokeapi.poketest.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,18 +11,27 @@ import javax.persistence.Table;
 public class Type {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "idType", columnDefinition = "INTEGER")
-	private String idType;
+	@Column(name = "idtype", columnDefinition = "INTEGER")
+	private Integer idType;
 	
-	@Column(name = "name", columnDefinition = "VARCHAR(100)",unique=true)
+	@Column(name = "name", columnDefinition = "VARCHAR(100)", unique = true)
 	private String name;
 
-	public String getIdType() {
+	// Default constructor
+	public Type() {
+	}
+
+	// Parameterized constructor
+	public Type(Integer idType, String name) {
+		this.idType = idType;
+		this.name = name;
+	}
+
+	public Integer getIdType() {
 		return idType;
 	}
 
-	public void setIdType(String idType) {
+	public void setIdType(Integer idType) {
 		this.idType = idType;
 	}
 

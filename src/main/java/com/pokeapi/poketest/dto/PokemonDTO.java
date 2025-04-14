@@ -3,9 +3,9 @@ package com.pokeapi.poketest.dto;
 public class PokemonDto {
     private Integer idPokemon;
     private String name;
-    private String height;
-    private String weight;
-    private String baseExperience;
+    private Integer height;
+    private Integer weight;
+    private Integer baseExperience;
 
     public Integer getIdPokemon() {
         return idPokemon;
@@ -23,27 +23,27 @@ public class PokemonDto {
         this.name = name;
     }
 
-    public String getHeight() {
+    public Integer getHeight() {
         return height;
     }
 
-    public void setHeight(String height) {
+    public void setHeight(Integer height) {
         this.height = height;
     }
 
-    public String getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
-    public void setWeight(String weight) {
+    public void setWeight(Integer weight) {
         this.weight = weight;
     }
 
-    public String getBaseExperience() {
+    public Integer getBaseExperience() {
         return baseExperience;
     }
 
-    public void setBaseExperience(String baseExperience) {
+    public void setBaseExperience(Integer baseExperience) {
         this.baseExperience = baseExperience;
     }
 }

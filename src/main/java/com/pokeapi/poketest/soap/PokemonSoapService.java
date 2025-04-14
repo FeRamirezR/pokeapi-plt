@@ -1,13 +1,15 @@
 package com.pokeapi.poketest.soap;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.pokeapi.poketest.dto.PokemonDto;
-import com.pokeapi.poketest.service.PokemonService;
+import java.util.List;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
-import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.pokeapi.poketest.dto.PokemonDto;
+import com.pokeapi.poketest.service.PokemonService;
 
 @WebService(serviceName = "PokemonSoapService")
 @Service
@@ -22,7 +24,7 @@ public class PokemonSoapService {
     }
 
     @WebMethod
-    public PokemonDto getPokemonById(String id) {
+    public PokemonDto getPokemonById(Integer id) {
         return pokemonService.findById(id);
     }
 
@@ -32,7 +34,7 @@ public class PokemonSoapService {
     }
 
     @WebMethod
-    public void deletePokemon(String id) {
+    public void deletePokemon(Integer id) {
         pokemonService.delete(id);
     }
 }

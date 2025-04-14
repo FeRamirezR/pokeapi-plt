@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,6 @@ import com.pokeapi.poketest.dao.PokemonAbilityDao;
 import com.pokeapi.poketest.dto.PokemonAbilityDto;
 import com.pokeapi.poketest.entity.PokemonAbility;
 import com.pokeapi.poketest.service.PokemonAbilityService;
-import org.modelmapper.ModelMapper;
 
 @Service
 public class PokemonAbilityServiceImpl implements PokemonAbilityService {

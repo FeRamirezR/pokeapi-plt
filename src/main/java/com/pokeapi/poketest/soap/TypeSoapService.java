@@ -1,13 +1,15 @@
 package com.pokeapi.poketest.soap;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.pokeapi.poketest.dto.TypeDto;
-import com.pokeapi.poketest.service.TypeService;
+import java.util.List;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
-import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.pokeapi.poketest.dto.TypeDto;
+import com.pokeapi.poketest.service.TypeService;
 
 @WebService(serviceName = "TypeSoapService")
 @Service
@@ -22,7 +24,7 @@ public class TypeSoapService {
     }
 
     @WebMethod
-    public TypeDto getTypeById(String id) {
+    public TypeDto getTypeById(Integer id) {
         return typeService.findById(id);
     }
 
@@ -32,7 +34,7 @@ public class TypeSoapService {
     }
 
     @WebMethod
-    public void deleteType(String id) {
+    public void deleteType(Integer id) {
         typeService.delete(id);
     }
 }

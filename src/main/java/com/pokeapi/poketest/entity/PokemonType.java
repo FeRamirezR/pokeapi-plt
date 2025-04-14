@@ -16,13 +16,13 @@ public class PokemonType {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "idPokemonType", columnDefinition = "INTEGER")
+    @Column(name = "idpokemontype", columnDefinition = "INTEGER")
 	private Integer idPokemonType;
 	
-	@Column(name = "idPokenom", columnDefinition = "INTEGER")
+	@Column(name = "idpokenom", columnDefinition = "INTEGER")
 	private Integer idPokenom;
 	
-	@Column(name = "idType", columnDefinition = "INTEGER")
+	@Column(name = "idtype", columnDefinition = "INTEGER")
 	private Integer idType;
 	
 	@Column(name = "slot", columnDefinition = "INTEGER")

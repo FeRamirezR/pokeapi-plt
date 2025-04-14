@@ -5,16 +5,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pokeapi.poketest.client.PokemonRestClient;
 import com.pokeapi.poketest.dao.PokemonDao;
-import com.pokeapi.poketest.dto.PokemonDto;
 import com.pokeapi.poketest.dto.PokemonApiResultDto;
+import com.pokeapi.poketest.dto.PokemonDto;
 import com.pokeapi.poketest.entity.Pokemon;
 import com.pokeapi.poketest.service.PokemonService;
-import org.modelmapper.ModelMapper;
 
 @Service
 public class PokemonServiceImpl implements PokemonService {
@@ -62,7 +62,7 @@ public class PokemonServiceImpl implements PokemonService {
             Integer id = extractIdFromUrl(pokemon.getUrl());
             Pokemon existingPokemon = pokemonDao.findById(id).orElse(null); // Usa Integer
             if (existingPokemon == null) {
-                return new Pokemon(idpokemon, pokemon.getName(), null, null, null);
+                return new Pokemon(id, pokemon.getName(), null, null, null);
             }
             return null; // Omite si ya existe
         }).filter(pokemon -> pokemon != null).collect(Collectors.toList());

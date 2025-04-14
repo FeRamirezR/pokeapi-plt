@@ -73,3 +73,6 @@ CREATE TABLE IF NOT EXISTS pokemon_ability (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_by VARCHAR(50) DEFAULT 'system'
 );
+
+-- CREATE SEQUENCE pokemon_idpokemon_seq START 1;
+-- ALTER TABLE pokemon ALTER COLUMN idpokemon SET DEFAULT nextval('pokemon_idpokemon_seq');

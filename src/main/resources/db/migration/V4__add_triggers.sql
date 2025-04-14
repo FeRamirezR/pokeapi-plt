@@ -3,15 +3,53 @@ CREATE OR REPLACE FUNCTION log_pokemon_changes() RETURNS TRIGGER AS $$
 BEGIN
     IF (TG_OP = 'DELETE') THEN
         INSERT INTO audit_log (table_name, record_id, action, changed_data)
-        VALUES ('pokemon', OLD.id::TEXT, TG_OP, row_to_json(OLD)::TEXT);
+        VALUES ('pokemon', OLD.idpokemon::TEXT, TG_OP, row_to_json(OLD)::TEXT);
         RETURN OLD;
     ELSIF (TG_OP = 'UPDATE') THEN
         INSERT INTO audit_log (table_name, record_id, action, changed_data)
-        VALUES ('pokemon', NEW.id::TEXT, TG_OP, row_to_json(NEW)::TEXT);
+        VALUES ('pokemon', NEW.idpokemon::TEXT, TG_OP, row_to_json(NEW)::TEXT);
         RETURN NEW;
     ELSIF (TG_OP = 'INSERT') THEN
         INSERT INTO audit_log (table_name, record_id, action, changed_data)
-        VALUES ('pokemon', NEW.id::TEXT, TG_OP, row_to_json(NEW)::TEXT);
+        VALUES ('pokemon', NEW.idpokemon::TEXT, TG_OP, row_to_json(NEW)::TEXT);
+        RETURN NEW;
+    END IF;
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION log_type_changes() RETURNS TRIGGER AS $$
+BEGIN
+    IF (TG_OP = 'DELETE') THEN
+        INSERT INTO audit_log (table_name, record_id, action, changed_data)
+        VALUES ('type', OLD.idtype::TEXT, TG_OP, row_to_json(OLD)::TEXT);
+        RETURN OLD;
+    ELSIF (TG_OP = 'UPDATE') THEN
+        INSERT INTO audit_log (table_name, record_id, action, changed_data)
+        VALUES ('type', NEW.idtype::TEXT, TG_OP, row_to_json(NEW)::TEXT);
+        RETURN NEW;
+    ELSIF (TG_OP = 'INSERT') THEN
+        INSERT INTO audit_log (table_name, record_id, action, changed_data)
+        VALUES ('type', NEW.idtype::TEXT, TG_OP, row_to_json(NEW)::TEXT);
+        RETURN NEW;
+    END IF;
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION log_ability_changes() RETURNS TRIGGER AS $$
+BEGIN
+    IF (TG_OP = 'DELETE') THEN
+        INSERT INTO audit_log (table_name, record_id, action, changed_data)
+        VALUES ('ability', OLD.idability::TEXT, TG_OP, row_to_json(OLD)::TEXT);
+        RETURN OLD;
+    ELSIF (TG_OP = 'UPDATE') THEN
+        INSERT INTO audit_log (table_name, record_id, action, changed_data)
+        VALUES ('ability', NEW.idability::TEXT, TG_OP, row_to_json(NEW)::TEXT);
+        RETURN NEW;
+    ELSIF (TG_OP = 'INSERT') THEN
+        INSERT INTO audit_log (table_name, record_id, action, changed_data)
+        VALUES ('ability', NEW.idability::TEXT, TG_OP, row_to_json(NEW)::TEXT);
         RETURN NEW;
     END IF;
     RETURN NULL;
@@ -28,22 +66,31 @@ EXECUTE FUNCTION log_pokemon_changes();
 CREATE TRIGGER trg_audit_type
 AFTER INSERT OR UPDATE OR DELETE ON type
 FOR EACH ROW
-EXECUTE FUNCTION log_pokemon_changes();
+EXECUTE FUNCTION log_type_changes();
 
 -- Trigger para la tabla ability
 CREATE TRIGGER trg_audit_ability
 AFTER INSERT OR UPDATE OR DELETE ON ability
 FOR EACH ROW
-EXECUTE FUNCTION log_pokemon_changes();
+EXECUTE FUNCTION log_ability_changes();
 
--- Trigger para la tabla pokemon_type
-CREATE TRIGGER trg_audit_pokemon_type
-AFTER INSERT OR UPDATE OR DELETE ON pokemon_type
+
+
+
+-- Trigger para la tabla pokemon
+CREATE TRIGGER trg_audit_pokemon
+AFTER INSERT OR UPDATE OR DELETE ON pokemon
 FOR EACH ROW
 EXECUTE FUNCTION log_pokemon_changes();
 
--- Trigger para la tabla pokemon_ability
-CREATE TRIGGER trg_audit_pokemon_ability
-AFTER INSERT OR UPDATE OR DELETE ON pokemon_ability
+-- Trigger para la tabla type
+CREATE TRIGGER trg_audit_type
+AFTER INSERT OR UPDATE OR DELETE ON type
 FOR EACH ROW
-EXECUTE FUNCTION log_pokemon_changes();
+EXECUTE FUNCTION log_type_changes();
+
+-- Trigger para la tabla ability
+CREATE TRIGGER trg_audit_ability
+AFTER INSERT OR UPDATE OR DELETE ON ability
+FOR EACH ROW
+EXECUTE FUNCTION log_ability_changes();

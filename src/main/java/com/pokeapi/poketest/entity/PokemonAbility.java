@@ -17,19 +17,19 @@ public class PokemonAbility {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "idPokemonAbility", columnDefinition = "INTEGER")
+    @Column(name = "idpokemonability", columnDefinition = "INTEGER")
 	private Integer idPokemonAbility;
 	
-	@Column(name = "idPokenom", columnDefinition = "INTEGER")
+	@Column(name = "idpokenom", columnDefinition = "INTEGER")
 	private Integer idPokenom;
 	
-	@Column(name = "idAbility", columnDefinition = "INTEGER")
+	@Column(name = "idability", columnDefinition = "INTEGER")
 	private Integer idAbility;
 	
 	@Column(name = "slot", columnDefinition = "INTEGER")
 	private Integer slot;
 	
-	@Column(name = "isHidden", columnDefinition = "BOOLEAN")
+	@Column(name = "ishidden", columnDefinition = "BOOLEAN")
 	private Boolean isHidden;
 
     public PokemonAbility(Integer idAbility, Integer idPokemonAbility, Integer idPokenom, Boolean isHidden, Integer slot) {
