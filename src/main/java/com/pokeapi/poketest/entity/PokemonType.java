@@ -1,66 +1,62 @@
 package com.pokeapi.poketest.entity;
 
-import java.time.LocalDateTime;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
 import javax.persistence.Column;
-import javax.persistence.IdClass;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "pokemon_type")
-@IdClass(PokemonTypeId.class)
+@Table(name="pokemon_type", uniqueConstraints = { 
+	@UniqueConstraint(columnNames = {"idPokenom", "idType"}) 
+})
 public class PokemonType {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idPokemonType", columnDefinition = "INTEGER")
+	private Integer idPokemonType;
+	
+	@Column(name = "idPokenom", columnDefinition = "INTEGER")
+	private Integer idPokenom;
+	
+	@Column(name = "idType", columnDefinition = "INTEGER")
+	private Integer idType;
+	
+	@Column(name = "slot", columnDefinition = "INTEGER")
+	private Integer slot;
 
-    @Id
-    @Column(name = "pokemon_id")
-    private Integer pokemonId;
-
-    @Id
-    @Column(name = "type_id")
-    private Integer typeId;
-
-    private Integer slot;
-
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
-    @Column(name = "created_by")
-    private String createdBy;
-
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-
-    @Column(name = "updated_by")
-    private String updatedBy;
-
-    public PokemonType() {
-    }
-
-    public PokemonType(Integer pokemonId, Integer typeId, Integer slot, LocalDateTime createdAt, String createdBy, LocalDateTime updatedAt, String updatedBy) {
-        this.pokemonId = pokemonId;
-        this.typeId = typeId;
+    public PokemonType(Integer idPokemonType, Integer idPokenom, Integer idType, Integer slot) {
+        this.idPokemonType = idPokemonType;
+        this.idPokenom = idPokenom;
+        this.idType = idType;
         this.slot = slot;
-        this.createdAt = createdAt;
-        this.createdBy = createdBy;
-        this.updatedAt = updatedAt;
-        this.updatedBy = updatedBy;
     }
 
-    public Integer getPokemonId() {
-        return pokemonId;
+    public Integer getIdPokemonType() {
+        return idPokemonType;
     }
 
-    public void setPokemonId(Integer pokemonId) {
-        this.pokemonId = pokemonId;
+    public void setIdPokemonType(Integer idPokemonType) {
+        this.idPokemonType = idPokemonType;
     }
 
-    public Integer getTypeId() {
-        return typeId;
+    public Integer getIdPokenom() {
+        return idPokenom;
     }
 
-    public void setTypeId(Integer typeId) {
-        this.typeId = typeId;
+    public void setIdPokenom(Integer idPokenom) {
+        this.idPokenom = idPokenom;
+    }
+
+    public Integer getIdType() {
+        return idType;
+    }
+
+    public void setIdType(Integer idType) {
+        this.idType = idType;
     }
 
     public Integer getSlot() {
@@ -71,35 +67,6 @@ public class PokemonType {
         this.slot = slot;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
+    
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public String getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
-    }
 }

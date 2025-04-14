@@ -1,102 +1,40 @@
 package com.pokeapi.poketest.entity;
 
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-@Table(name = "type")
+
+@Entity
+@Table(name="type")
 public class Type {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idType", columnDefinition = "INTEGER")
+	private String idType;
+	
+	@Column(name = "name", columnDefinition = "VARCHAR(100)",unique=true)
+	private String name;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	public String getIdType() {
+		return idType;
+	}
 
-    @Column(nullable = false, unique = true)
-    private String name;
+	public void setIdType(String idType) {
+		this.idType = idType;
+	}
 
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+	public String getName() {
+		return name;
+	}
 
-    @Column(name = "created_by", nullable = false)
-    private String createdBy = "system";
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    @Column(name = "updated_at", nullable = false)
-    private LocalDateTime updatedAt = LocalDateTime.now();
-
-    @Column(name = "updated_by", nullable = false)
-    private String updatedBy = "system";
-
-    @OneToMany(mappedBy = "type", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<PokemonType> pokemonTypes = new HashSet<>();
-
-    public Type() {
-    }
-
-    public Type(String name) {
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public String getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
-    }
-
-    public Set<PokemonType> getPokemonTypes() {
-        return pokemonTypes;
-    }
-
-    public void setPokemonTypes(Set<PokemonType> pokemonTypes) {
-        this.pokemonTypes = pokemonTypes;
-    }
+	
 }
-

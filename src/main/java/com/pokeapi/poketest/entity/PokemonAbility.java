@@ -1,105 +1,84 @@
 package com.pokeapi.poketest.entity;
 
-import java.time.LocalDateTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
-import jakarta.persistence.Table;
-@Table(name = "pokemon_ability")
+
+@Entity
+@Table(name="pokemon_ability", uniqueConstraints = { 
+	@UniqueConstraint(columnNames = {"idPokenom", "idAbility"}) 
+})
 public class PokemonAbility {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idPokemonAbility", columnDefinition = "INTEGER")
+	private Integer idPokemonAbility;
+	
+	@Column(name = "idPokenom", columnDefinition = "INTEGER")
+	private Integer idPokenom;
+	
+	@Column(name = "idAbility", columnDefinition = "INTEGER")
+	private Integer idAbility;
+	
+	@Column(name = "slot", columnDefinition = "INTEGER")
+	private Integer slot;
+	
+	@Column(name = "isHidden", columnDefinition = "BOOLEAN")
+	private Boolean isHidden;
 
-    @EmbeddedId
-    private PokemonAbilityId id = new PokemonAbilityId();
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("pokemonId")
-    @JoinColumn(name = "pokemon_id", nullable = false)
-    private Pokemon pokemon;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("abilityId")
-    @JoinColumn(name = "ability_id", nullable = false)
-    private Ability ability;
-
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
-
-    @Column(name = "created_by", nullable = false)
-    private String createdBy = "system";
-
-    @Column(name = "updated_at", nullable = false)
-    private LocalDateTime updatedAt = LocalDateTime.now();
-
-    @Column(name = "updated_by", nullable = false)
-    private String updatedBy = "system";
-
-    public PokemonAbility() {
-        // Default constructor
+    public PokemonAbility(Integer idAbility, Integer idPokemonAbility, Integer idPokenom, Boolean isHidden, Integer slot) {
+        this.idAbility = idAbility;
+        this.idPokemonAbility = idPokemonAbility;
+        this.idPokenom = idPokenom;
+        this.isHidden = isHidden;
+        this.slot = slot;
     }
 
-    public PokemonAbility(Pokemon pokemon, Ability ability) {
-        this.pokemon = pokemon;
-        this.ability = ability;
-        this.id = new PokemonAbilityId(pokemon.getId().longValue(), ability.getId().longValue());
-    }
-    public PokemonAbilityId getId() {
-        return id;
+    public Integer getIdPokemonAbility() {
+        return idPokemonAbility;
     }
 
-    public void setId(PokemonAbilityId id) {
-        this.id = id;
+    public void setIdPokemonAbility(Integer idPokemonAbility) {
+        this.idPokemonAbility = idPokemonAbility;
     }
 
-    public Pokemon getPokemon() {
-        return pokemon;
+    public Integer getIdPokenom() {
+        return idPokenom;
     }
 
-    public void setPokemon(Pokemon pokemon) {
-        this.pokemon = pokemon;
+    public void setIdPokenom(Integer idPokenom) {
+        this.idPokenom = idPokenom;
     }
 
-    public Ability getAbility() {
-        return ability;
+    public Integer getIdAbility() {
+        return idAbility;
     }
 
-    public void setAbility(Ability ability) {
-        this.ability = ability;
+    public void setIdAbility(Integer idAbility) {
+        this.idAbility = idAbility;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public Integer getSlot() {
+        return slot;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setSlot(Integer slot) {
+        this.slot = slot;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
+    public Boolean getIsHidden() {
+        return isHidden;
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+    public void setIsHidden(Boolean isHidden) {
+        this.isHidden = isHidden;
     }
 
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public String getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
-    }
+   
 }
-

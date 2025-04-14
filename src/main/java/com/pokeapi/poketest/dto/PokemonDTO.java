@@ -1,15 +1,18 @@
 package com.pokeapi.poketest.dto;
 
-public class PokemonDTO {
+public class PokemonDto {
+    private Integer idPokemon;
     private String name;
-    private String url;
+    private String height;
+    private String weight;
+    private String baseExperience;
 
-    public PokemonDTO() {
+    public Integer getIdPokemon() {
+        return idPokemon;
     }
 
-    public PokemonDTO(String name, String url) {
-        this.name = name;
-        this.url = url;
+    public void setIdPokemon(Integer idPokemon) {
+        this.idPokemon = idPokemon;
     }
 
     public String getName() {
@@ -20,11 +23,27 @@ public class PokemonDTO {
         this.name = name;
     }
 
-    public String getUrl() {
-        return url;
+    public String getHeight() {
+        return height;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setHeight(String height) {
+        this.height = height;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public String getBaseExperience() {
+        return baseExperience;
+    }
+
+    public void setBaseExperience(String baseExperience) {
+        this.baseExperience = baseExperience;
     }
 }
